@@ -7,10 +7,10 @@ This is a React App create to showcase techniques of using API to create own Alb
 Clone this repo to your computer.
 
 ```bash
-git clone http://github.com/xxx.git
+git clone https://github.com/adriankoh-sg/ak-album.git
 ```
 
-Intsall dependencies.
+Install dependencies.
 
 ```bash
 npm install
