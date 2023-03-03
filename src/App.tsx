@@ -1,29 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import { store } from '@store/store';
+import Header from './components';
 import HomePage from '@pages/home';
+import Album from '@pages/album';
 
-interface INumberProps {
-  initValue: number;
-}
-
-const App = ({ initValue }: INumberProps): React.ReactNode => {
-  const [value, setValue] = useState(initValue);
-
-  const onIncrement = (): void => {
-    setValue(value + 1);
-  };
-
-  const onDecrement = () => {
-    setValue(value - 1);
-  };
-
+const App = () => {
   return (
-    <div>
-      Number is {value}
-      <div>
-        <button onClick={onIncrement}>+</button>
-        <button onClick={onDecrement}>-</button>
-      </div>
-      <HomePage />
+    <div className="container-fluid">
+      <Provider store={store}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/album" element={<Album />} />
+        </Routes>
+      </Provider>
     </div>
   );
 };

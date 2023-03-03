@@ -27,10 +27,13 @@
     ],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "max-len": ["warn", { "code": 80 }],
+    "max-len": ["warn", { "code": 120 }],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-    // "import/prefer-default-export": "off"
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   },
   "root": true,
   "settings": {
