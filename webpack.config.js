@@ -35,6 +35,10 @@ const config = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.(scss)$/,
+        use: ['sass-loader'],
+      },
+      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
