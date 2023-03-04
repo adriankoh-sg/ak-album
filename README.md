@@ -24,7 +24,7 @@ npm start
 
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
 
 ## Builds App for production
 
@@ -32,8 +32,8 @@ The page will reload if you make edits.\
 npm run build
 ```
 
-Builds the app for production to the `build` folder.\
-It will output 2 files:\
+Builds the app for production to the `build` folder.
+It will output 2 files:
 
 - `bundle.main.js`
 - `index.html`
@@ -53,10 +53,10 @@ Descibe the folder structure used for this project.
 
 ## Project Environment Setup
 
-This project uses the API from https://last.fm in order to showcase the album.\
-You need to go the <b>last.fm</b> to register an account and generate an API key.\
+This project uses the API from https://last.fm in order to showcase the album.
+You need to go the <b>last.fm</b> to register an account and generate an API key.
 
-The project uses .env file to store the API keys. After you got your keys, create a `.env` in the root folder and input as follows:\
+The project uses .env file to store the API keys. After you got your keys, create a `.env` in the root folder and input as follows:
 
 ```bash
 API_KEY=xxxyourapikeyherexxx
