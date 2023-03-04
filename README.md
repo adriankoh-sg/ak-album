@@ -56,7 +56,7 @@ This page will display the album details.
 
 In this project, we are using `react-toastify` library for toasting error messages from API. A very useful library!
 
-More information on ![react-toastify](https://github.com/fkhadra/react-toastify)
+More information on [react-toastify](https://github.com/fkhadra/react-toastify)
 
 ![Error Toast](./doc/screenshot03.png 'Toast Notification')
 
