@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   data: {
@@ -14,14 +14,27 @@ const initialState = {
       { name: 'Gorillaz', mbid: 'e21857d5-3256-4547-afb3-4b6ded592596' },
       { name: 'Frank Ocean', mbid: 'e520459c-dff4-491d-a6e4-c97be35e0044' },
     ],
+    currentAlbum: {
+      name: '' as string,
+      mbid: '' as string,
+    },
   },
 };
+
+interface ICurrentAlbumPayload {
+  name: string;
+  mbid: string;
+}
 
 const globalSlice = createSlice({
   name: 'globalSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentAlbum: (state, action: PayloadAction<ICurrentAlbumPayload>) => {
+      state.data.currentAlbum = action.payload;
+    },
+  },
 });
 
-// export const {  } = globalSlice.actions;
+export const { setCurrentAlbum } = globalSlice.actions;
 export default globalSlice.reducer;

@@ -27,7 +27,6 @@ const getTopAlbum = createAsyncThunk('getTopAlbum', async ({ mbid }: IApiProps) 
   const url = `${baseUrl}${params}`;
 
   const response = await axios.get(url);
-  console.log('data', response.data as TTopAlbumResponse);
   return response.data as TTopAlbumResponse;
 });
 
@@ -46,7 +45,6 @@ const homePageSlice = createSlice({
       })
       .addCase(getTopAlbum.fulfilled, (state, { payload }) => {
         state.data.isLoading = false;
-        console.log({ payload });
         state.data.album = payload.topalbums.album;
         state.data.attributes = payload.topalbums['@attr'];
       })
