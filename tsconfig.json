@@ -32,7 +32,7 @@
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
-      "@config/*": ["./src/config"],
+      "@config/*": ["./src/config/*"],
       "@pages/*": ["./src/pages/*"],
       "@service/*": ["./src/service/*"],
       "@store/*": ["./src/store/*"],

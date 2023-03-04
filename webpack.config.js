@@ -1,12 +1,11 @@
 const path = require('path');
-
-const app_dir = __dirname;
-console.log(app_dir);
-
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: path.resolve(__dirname, '.', './src/index.html'),
 });
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const NodePolyfillPluginConfig = new NodePolyfillPlugin();
 
 // webpack config
 const config = {
@@ -36,6 +35,10 @@ const config = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.(scss)$/,
+        use: ['sass-loader'],
+      },
+      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
@@ -45,9 +48,14 @@ const config = {
       },
     ],
   },
-  plugins: [HTMLWebpackPluginConfig],
+  plugins: [HTMLWebpackPluginConfig, NodePolyfillPluginConfig, new Dotenv()],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    fallback: {
+      fs: false,
+      os: false,
+      path: false,
+    },
   },
   optimization: {
     removeAvailableModules: false,

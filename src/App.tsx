@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { ThemeProvider, Container } from 'react-bootstrap';
+
+import { store } from '@store/store';
+import Header from './components';
 import HomePage from '@pages/home';
+import Album from '@pages/album';
+import Search from '@pages/search';
 
-interface INumberProps {
-  initValue: number;
-}
-
-const App = ({ initValue }: INumberProps): React.ReactNode => {
-  const [value, setValue] = useState(initValue);
-
-  const onIncrement = (): void => {
-    setValue(value + 1);
-  };
-
-  const onDecrement = () => {
-    setValue(value - 1);
-  };
-
+const App = () => {
   return (
-    <div>
-      Number is {value}
-      <div>
-        <button onClick={onIncrement}>+</button>
-        <button onClick={onDecrement}>-</button>
-      </div>
-      <HomePage />
-    </div>
+    <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
+      <Container fluid>
+        <Provider store={store}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/album" element={<Album />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+          <ToastContainer />
+        </Provider>
+      </Container>
+    </ThemeProvider>
   );
 };
 
