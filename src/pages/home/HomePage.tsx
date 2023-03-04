@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Dropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Container, Row, Col, Card, Dropdown, Button } from 'react-bootstrap';
 import { getTopAlbum } from '@store/homePageSlice';
+import { setCurrentAlbum } from '@store/globalSlice';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { errorToast, Spinner } from '@components/index';
 import type { TAlbum } from '@store/stateDataTypes';
@@ -15,29 +17,6 @@ const {
   api: { defaultArtist },
 } = CONFIG;
 
-const ItemDisplay = ({ item }: IItemDisplay) => {
-  const { name, playcount, url, image } = item;
-  const imgSrc = image[3]['#text'] ?? 'holder.js/300px300';
-
-  return (
-    <Card>
-      <Card.Img variant="top" src={imgSrc} />
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Row>
-          <a href={url} className="btn btn-primary btn-sm" target="_blank" style={{ width: '100%' }}>
-            Visit Site
-          </a>
-        </Row>
-      </Card.Body>
-      <Card.Footer>
-        <small className="text">Play count: </small>
-        <small className="text-muted">{playcount}</small>
-      </Card.Footer>
-    </Card>
-  );
-};
-
 export const HomePage = () => {
   const {
     data: { isLoading, album },
@@ -47,6 +26,7 @@ export const HomePage = () => {
   } = useAppSelector((state) => state.globalSlice);
   const dispatch = useAppDispatch();
   const [artist, setArtist] = useState<TArtist>(defaultArtist);
+  const navigate = useNavigate();
 
   // call api via redux thunk to load the album base on artist selected
   const loadTopArtists = async () => {
@@ -62,9 +42,50 @@ export const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [artist]);
 
+  const handleViewDetails = (name: string, id: string) => {
+    // set the current selected data to global state and navigate to Album page
+    dispatch(setCurrentAlbum({ name, mbid: id }));
+    navigate(`/album/${id}`);
+  };
+
+  /**
+   * Function to render ONE item (one Album)
+   */
+  const ItemDisplay = ({ item }: IItemDisplay) => {
+    const { name, playcount, url, image, mbid } = item;
+    const imgSrc = image[3]['#text'] ?? 'holder.js/300px300';
+
+    return (
+      <Card>
+        <Card.Img variant="top" src={imgSrc} />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Row>
+            <Col md={6}>
+              <Button variant="primary" style={{ width: '100%' }} onClick={() => handleViewDetails(name, mbid)}>
+                Details
+              </Button>
+            </Col>
+            <Col md={6}>
+              <a href={url} target="_blank">
+                <Button variant="secondary" style={{ width: '100%' }}>
+                  Visit Site
+                </Button>
+              </a>
+            </Col>
+          </Row>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text">Play count: </small>
+          <small className="text-muted">{playcount}</small>
+        </Card.Footer>
+      </Card>
+    );
+  };
+
   return (
     <Container>
-      <Row sm={6} style={{ alignItems: 'center', padding: 10 }}>
+      <Row md={6} style={{ alignItems: 'center', padding: 10 }}>
         <h5>Feature Artist:</h5>
         <Dropdown>
           <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ width: 200 }}>
@@ -88,7 +109,7 @@ export const HomePage = () => {
         ) : (
           album.map((item: TAlbum, index) => {
             return (
-              <Col sm={4} style={{ padding: 5 }} key={`album-${index}`}>
+              <Col md={4} style={{ padding: 5 }} key={`album-${index}`}>
                 <ItemDisplay item={item} />
               </Col>
             );

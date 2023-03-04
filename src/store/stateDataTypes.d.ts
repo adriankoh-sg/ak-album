@@ -30,6 +30,7 @@ export type TAlbum = {
   name: string;
   playcount: string;
   url: string;
+  mbid: string;
   artist: {
     name: string;
     mbid: string;
@@ -42,5 +43,33 @@ export type TTopAlbumResponse = {
   topalbums: {
     album: TAlbum[];
     '@attr': TAttributes;
+  };
+};
+
+export type TAlbumDetails = {
+  album: {
+    artist: string;
+    image: TImage[];
+    listeners: string;
+    name: string;
+    playcount: string;
+    tags: {
+      tag: {
+        name: string;
+        url: string;
+      }[];
+    };
+    tracks: {
+      track: {
+        duration: string;
+        name: string;
+      }[];
+    };
+    url: string;
+    wiki: {
+      published: string;
+      summary: string;
+      content: string;
+    };
   };
 };

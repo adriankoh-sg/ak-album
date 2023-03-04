@@ -18,7 +18,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/album" element={<Album />} />
+            <Route path="/album/:mbid" element={<Album />} />
             <Route path="/search" element={<Search />} />
           </Routes>
           <ToastContainer />
