@@ -38,6 +38,20 @@ It will output 2 files:
 - `bundle.main.js`
 - `index.html`
 
+## Running the Project
+
+### Home Page
+
+At Home page, it will display a list of all the album based on the selected artist. Click on `Details` to goto Album details page.
+
+![home](./doc/screenshot01.png 'Home Page')
+
+### Album Detail Page
+
+This page will display the album details.
+
+![Album](./doc/screenshot02.png 'Album Details Page')
+
 ## Project Structure
 
 Descibe the folder structure used for this project.
