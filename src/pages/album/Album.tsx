@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container, Row } from 'react-bootstrap';
 
 export const Album = () => {
   return (
-    <div>
-      <h1>Welcome To Album details page</h1>
-    </div>
+    <Container>
+      <Row className="p-3">
+        <h3>Under construction</h3>
+      </Row>
+    </Container>
   );
 };

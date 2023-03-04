@@ -1,10 +1,12 @@
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
-import homePageSlice from './homePage/homePageSlice';
+import globalSlice from './globalSlice';
+import homePageSlice from './homePageSlice';
 
 export const store = configureStore({
   reducer: {
+    globalSlice,
     homePageSlice,
   },
 });

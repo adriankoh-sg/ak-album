@@ -4,10 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
-const rootApp = ReactDOM.createRoot(
-  document.getElementById('appRoot') as HTMLElement
-);
+const rootApp = ReactDOM.createRoot(document.getElementById('appRoot') as HTMLElement);
 
 rootApp.render(
   <BrowserRouter>
